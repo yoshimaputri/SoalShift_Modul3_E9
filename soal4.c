@@ -16,7 +16,18 @@ void* faktorial1() //menjalankan thread 1
 	printf("Hasil %d! = %d\n", t[0], result);
 }
 
+void* faktorial2() //menjalankan thread 2
+{
+	int range=t[1], result=1;
+	while(range>0){
+	 result*=range; range--;
+	}
+	printf("Hasil %d! = %d\n", t[1], result);
+}
 
+void*faktorial3() //menjalankan thread 3
+{
+}
 
 int main()
 {
