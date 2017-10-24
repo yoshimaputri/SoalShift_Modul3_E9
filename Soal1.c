@@ -9,10 +9,10 @@ int main(){
 	key_t keyp= 1234;
 	char weapon[6][8]={"MP4A1", "PM2-V1","SS2-V5","SPR-3","SPG1-V3","MINE"};
 	int shmid = shmget(keyp,sizeof(int)*6, IPC_CREAT | 0666);
-/*	if(shmid<0){
+	if(shmid<0){
 		perror("shmget");
 		exit(1);
-	}*/
+	}
 	int *shm;
 	shm = shmat(shmid,NULL,0);
 	while(1){
@@ -42,5 +42,7 @@ int main(){
 			}
 		}
 	}
+	shmdt(shm);
+	shmctl(shmid,IPC_RMID,NULL);
 
 }
