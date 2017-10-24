@@ -17,7 +17,7 @@ int main(){
 	shm = shmat(shmid,NULL,0);
 	while(1){
 		printf("1. pilih 1 untuk lihat stock senjata\n");
-		printf("2. pilih 2 untuk menambahkan senjata\n");
+		printf("2. pilih 2 untuk membeli senjata\n");
 		int pil;
 		scanf("%d",&pil);
 		if(pil==1){
@@ -35,8 +35,8 @@ int main(){
 			//printf("%s\n",temp);
 			for(int i=0;i<6;i++){
 				if(!strcmp(weapon[i],temp)){
-					shm[i]+=jmlh;
-					//printf("berhasil");
+					if(jmlh>shm[i]) printf("barang di stock tidak cukup\n");
+					else shm[i]-=jmlh;
 					break;
 				}
 			}
