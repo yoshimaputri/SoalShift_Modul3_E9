@@ -7,10 +7,16 @@
 pthread_t tid[3];
 int t[3];
 
-void* faktorial1(void* arg)
+void* faktorial1() //menjalankan thread 1
 {
-
+	int range=t[0], result=1;
+	while(range>0){
+	 result*=range; range--;
+	}
+	printf("Hasil %d! = %d\n", t[0], result);
 }
+
+
 
 int main()
 {
@@ -24,9 +30,9 @@ int main()
 	  }
 	 }
 	}
-	for(a=0;a<i;a++){// printf("%d ", t[a]);
-		pthread_create(&(tid[a]),NULL,&faktorial,NULL);
-	}
+	pthread_create(&(tid[0]),NULL,&faktorial1,NULL);
+	pthread_create(&(tid[1]),NULL,&faktorial2,NULL);
+	pthread_create(&(tid[2]),NULL,&faktorial3,NULL);
 	for(a=0;a<i;a++) pthread_join(tid[a],NULL);
 	return 0;
 }
