@@ -16,6 +16,7 @@ void* carilagi()
 
 int main()
 {
+	scanf("%s", &k1);
 	pthread_create(&(tid[0]),NULL,&cari,NULL);
 	pthread_create(&(tid[1]),NULL,&carilagi,NULL);
 
