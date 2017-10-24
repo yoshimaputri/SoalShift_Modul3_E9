@@ -7,16 +7,11 @@ int kep=100,loh=100;
 pthread_t tid[3];
 void* binatang(){ //thread 1
 	while(kep > 0 && loh > 0){
-		char a,b;
-		printf("Beri makan lohan ?(Y/N) \n");
-		scanf("%c",&a);
-		if(a=='y'||a=='Y') loh+=10;
-		printf("Beri makan kepiting ?(Y/N) \n");
-		scanf("%c",&b);
-		if(b=='y'||b=='Y') kep+=10;
-		sleep(10);
-		printf("Status Kepiting = %d\n",kep);
-		printf("Status Lohan = %d\n",loh);
+		char a[20];
+		printf("Siapa yang mau diberi makan? \n");
+		scanf("%s",a);
+		if(a=="kepiting" || a=="Kepiting") kep+=10;
+		else if(a=="lohan"|| a=="Lohan") loh+=10;
 	}
 	if(kep<=0) {
 		printf("Game Over Kepiting mati\n");
