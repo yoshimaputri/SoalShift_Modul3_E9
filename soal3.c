@@ -5,19 +5,40 @@
 #include <string.h>
 
 int kep,loh;
+void* kepiting(){
+
+}
+void* lohan(){
+
+}
 int main(){
-	int a; 
-	pthread_create(&(tid[0]),NULL,&timer,NULL);
-	pthread_create(&(tid[1]),NULL,&timer1,NULL);
-	printf("fitur list :\n1. beri makan lohan\n2. beri makan kepiting\n3. cek status lohan\n4. cek status kepiting\n5. keluar program\npilih jenis fitur : ");
+	int kep=100,loh=100;
+	pthread_create(&(tid[0]),NULL,&kepiting,NULL);
+	pthread_create(&(tid[1]),NULL,&lohan,NULL);
 	while(1){
-	scanf("%d",&a);
-	if(a==1) pthread_create(&(tid[3]),NULL,&lohan,NULL);
-	else if(a==2) pthread_create(&(tid[4]),NULL,&kepiting,NULL);
-	else if(a==3) pthread_create(&(tid[5]),NULL,&statloh,NULL);
-	else if(a==4) pthread_create(&(tid[6]),NULL,&statkep,NULL);
-	else if(a==5) exit(0);
+		if(kep>100 || loh > 100 || kep <=0 || loh <= 0){
+			if(kep > 100 || kep <= 0) printf("Game Over Kepiting Overweight / Mati\n"); // kalo kepiting darahnya melebihi 100 atau dibawah sama dengan 0
+			else printf ("Game Over Lohan Overweight / Mati\n");
+			break;
+		}
+		int menu;
+		printf("Pilih yang kamu mau kasih makan!\n");
+		printf("1. Kepiting\n");
+		printf("2. Lohan\n");
+		scanf("%d",&menu);
+		if(menu==1){
+			printf("Kamu memilih kepiting !\n");
+			kep+=10;
+			printf("Status Kepiting sekarang : %d\n",kep);
+			printf("Status Lohan sekarang : %d\n",loh);
+		}
+		else if(menu==2){
+			printf("Kamu memilih lohan !\n");
+			loh+=10;
+			printf("Status Kepiting sekarang : %d\n",kep);
+			printf("Status Lohan sekarang : %d\n",loh);
+		}
 	}
-	for(int i=0;i<7;i++) pthread_join(tid[i],NULL);
+	
 	return 0;
 }
