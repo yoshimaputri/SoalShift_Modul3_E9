@@ -38,6 +38,7 @@ int main(){
 			printf("Status Kepiting sekarang : %d\n",kep);
 			printf("Status Lohan sekarang : %d\n",loh);
 		}
+		sleep(5); // ngasih sleep 5 detik biar ga kecepetan ngasih makan.
 	}
 	
 	return 0;
