@@ -5,13 +5,17 @@
 #include <string.h>
 
 pthread_t tid[2];
-int i; FILE *path; int status;
+int i; FILE *path; int status; char arr[1001]; char *line;
 
 void* cari(void *arg)
 {
-	status=0;
+	status=0; i=0;
+	char kata1[20]; strcpy(kata1,arg);
 	path=fopen("novel.txt", "r");
-	if(strcmp((char*)arg,"ifah")==0) printf("sip");
+	while(fscanf(path,"%s",arr)!=EOF){
+		if(strstr(arr,kata1)!=0) i++;
+	}
+	printf("%s : %d\n", kata1, i);
 	fclose(path);
 	status=1;
 }
@@ -23,7 +27,6 @@ void* carilagi()
 
 int main(int argc, char *argv[])
 {
-	printf("%s", argv[1]);
 	pthread_create(&(tid[0]),NULL,&cari,(void*)argv[1]);
 	pthread_create(&(tid[1]),NULL,&carilagi,(void*)argv[2]);
 
