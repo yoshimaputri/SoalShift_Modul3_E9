@@ -4,32 +4,28 @@
 #include <unistd.h>
 #include <string.h>
 
-int kep,loh;
+int kep=100,loh=100;
 pthread_t tid[2];
 void* kepiting(){
 	while(1){
 		sleep(20);
-		kep-=15;
-		if(kep<=0 || kep > 100 || loh <= 0 || loh > 100) exit(EXIT_FAILURE);
-		else{
+		kep-=10;
+		if(kep<=0 || kep > 100 || loh <=0 || loh > 100) exit(EXIT_FAILURE);
 			printf("STATUS KEPITING BERKURANG 15\n");
 			printf("HP KEPITING SEKARANG : %d\n",kep);
-		}
 	}
 }
 void* lohan(){
 	while(1){
 		sleep(10);
-		loh-=10;
-		if(loh<=0 || loh > 100 || kep<=0 || kep >100) exit(EXIT_FAILURE);
-		else{
-			printf("STATUS LOHAN BERKURANG 10\n");
-			printf("HP LOHAN SEKARANG : %d\n",loh);
-		}
+		loh-=15;
+		if(kep<=0||kep>100 || loh<=0 || loh >100) exit(EXIT_FAILURE);
+		printf("STATUS LOHAN BERKURANG 10\n");
+		printf("HP LOHAN SEKARANG : %d\n",loh);
+		
 	}
 }
 int main(){
-	int kep=100,loh=100;
 	pthread_create(&(tid[0]),NULL,&kepiting,NULL);
 	pthread_create(&(tid[1]),NULL,&lohan,NULL);
 	while(1){
@@ -58,7 +54,7 @@ int main(){
 		printf("Countdown 5 detik untuk memberi delay makanan\n");
 		sleep(5); // ngasih sleep 5 detik biar ga kecepetan ngasih makan.
 	}
-		pthread_join(tid[0],NULL);
+	pthread_join(tid[0],NULL);
 	pthread_join(tid[1],NULL);
 	return 0;
 }
