@@ -4,35 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 
-int kep=100,loh=100;
-pthread_t tid[7];
-
-void* lohan(){ 
-	loh+=10;
-	if(loh>100) {printf("game over! lohan overweight\n"); exit(EXIT_FAILURE);}
-	else printf("Status lohan(+10) : %d\n",loh);
-}
-void* kepiting(){
-	kep+=10;
-	if(kep>100) {printf("game over! kepiting overweigth\n"); exit(EXIT_FAILURE);}
-	else printf("Status kepiting(+10) : %d\n", kep);
-}
-void* statloh(){ printf("Status lohan : %d\n",loh);}
-void* statkep(){ printf("Status kepiting : %d\n",kep);}
-void* timer(){
-	while(kep>0){
-		sleep(20);
-		kep-=10;
-	if(kep<=0){ printf("Game Over! Kepiting Mati\n"); exit(EXIT_FAILURE);}
-	}
-}
-void* timer1(){
-	while(loh>0){
-		sleep(10);
-		loh-=15;
-	if(loh<=0){ printf("Game Over! Lohan Mati\n"); exit(EXIT_FAILURE);}
-	}
-}
+int kep,loh;
 int main(){
 	int a; 
 	pthread_create(&(tid[0]),NULL,&timer,NULL);
