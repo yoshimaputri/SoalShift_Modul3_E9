@@ -5,7 +5,8 @@
 #include <string.h>
 
 pthread_t tid[3];
-int t[3];int status;
+int t[3];
+int status;
 
 void* faktorial1() //menjalankan thread 1
 {
@@ -39,10 +40,10 @@ void* faktorial3() //menjalankan thread 3
 	printf("Hasil %d! = %d\n", t[2], result);
 }
 
-int main()
+int main(int argc,char *argv[])
 {
 	int i=3,hit=i,a; int temp;
-	scanf("%d %d %d", &t[0],&t[1],&t[2]);
+	t[0]=atoi((char*)argv[1]); t[1]=atoi((char*)argv[2]); t[2]=atoi((char*)argv[3]);
 	//fungsi sort biar output nya urut
 	while(hit--){
 	 for(a=0;a<i-1;a++){

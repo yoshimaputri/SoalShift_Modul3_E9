@@ -6,6 +6,7 @@
 
 pthread_t tid[2];
 char kata1[20]; char kata2[20];
+int i;
 
 void* cari()
 {
@@ -21,10 +22,26 @@ int main()
 {
 	scanf("%s", kata1);
 	scanf("%s", kata2);
-	FILE *path;
+	FILE *path; i=0;
+	char *line=NULL;
+//	size_t len=0; ssize_t read;
 	path=fopen("novel.txt", "r");
-//	size_t length;
-//	printf("%lu", length);
+//	while(read=getline(&line,&len,path)!=-1){ 
+//	if(fgetc(path)!=EOF){ printf("bs");
+//		while(getline(path,line)){
+//			if(strstr(line,kata1)!=NULL) {printf("nemu "); i++;}
+//	} printf("%d", i);
+char x; string word;
+	while(path!=EOF){
+	x=fgets();
+	while(x!=' '){
+	word=word+x;
+x=fgets();
+}
+printf("%s",word);
+}
+
+	fclose(path);
 	pthread_create(&(tid[0]),NULL,&cari,NULL);
 	pthread_create(&(tid[1]),NULL,&carilagi,NULL);
 
