@@ -20,9 +20,17 @@ void* cari(void *arg)
 	status=1;
 }
 
-void* carilagi()
+void* carilagi(void *arg)
 {
 	while(status!=1) {}
+	i=0;
+	char kata2[20]; strcpy(kata2,arg);
+	path=fopen("novel.txt", "r");
+	while(fscanf(path,"%s",arr)!=EOF){
+		if(strstr(arr,kata2)!=0) i++;
+	}
+	printf("%s : %d\n", kata2, i);
+	fclose(path);
 }
 
 int main(int argc, char *argv[])
